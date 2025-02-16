@@ -16,7 +16,7 @@ export default function Navbar() {
                         <a href="/cart" className="relative text-gray-700 hover:text-pink-500">
                         🛒Cart
                         {cart.length > 0 && (
-                            <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs font-semibold px-2 rounded-full">
+                            <span className="absolute -top-1 -right-6 bg-pink-500 text-white text-xs font-semibold px-2 rounded-full">
                                 {cart.length}
                             </span>
                         )}
