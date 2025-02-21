@@ -1,15 +1,15 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
-import { useEffect } from "react";
-
+import Link from "next/link";
 
 export default function CartPage() {
-    const { cart, setCart } = useCart();
+    const { cart, setCart, clearCart, checkout } = useCart();
 
-    useEffect(() => {
-        console.log("Cart contents in CartPage:", cart);
-    }, [cart]);
+    const handleCheckout = () => {
+        checkout();
+        router.push("/success");
+    }
 
     const removeFromCart = (id) => {
         setCart(cart.filter((item) => item.id !== id));
@@ -58,9 +58,14 @@ export default function CartPage() {
                                 <p className="text-lg font-semibold text-gray-800">Total:</p>
                                 <p className="text-lg font-semibold text-gray-800">${totalPrice}</p>
                             </div>
-                            <button className="block bg-pink-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-pink-700 transition">
+                            <Link href="/success">
+                            <button onClick={handleCheckout} className="block bg-pink-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-pink-700 transition">
                                 Checkout
                             </button>
+                            </Link>
+                            <div className="-my-6 text-right">
+                                <button onClick={clearCart} className="text-red-600 hover:text-red-800">Clear Cart</button>
+                            </div>
                         </div>
                     )}
                 </div>
